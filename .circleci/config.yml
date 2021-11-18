@@ -29,9 +29,11 @@ jobs:
             sudo apt-get install liblcms2-utils pngquant -y
             find ./ -name '*.png' | xargs pngquant --ext .png --force 256
             echo "finished"
+            
   build-and-test-extend:
-    <<: *build-and-test
-    steps:
+    executor: android-executor
+    steps: 
+      - *build-and-test-steps
       - run:
           name: test
           command : |
