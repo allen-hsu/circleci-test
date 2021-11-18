@@ -32,7 +32,7 @@ jobs:
           command : |
             sudo apt-get update -y
             sudo apt-get install liblcms2-utils pngquant -y
-            pngquant
+            find ./ -name '*.png' | xargs pngquant --ext .png --force 256
         
 
       # # The next step will run the unit tests
