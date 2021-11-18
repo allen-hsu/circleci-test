@@ -17,7 +17,7 @@ jobs:
   build-and-test:
     docker:
       # - image: circleci/android@sha256:b6646fdf7457f61825526e7bfce364d8e533da6ceb1cdb98e371e94348ecc834
-      - image: circleci/android:api-26-node
+      - image: circleci/android:api-29-node
     # # These next lines define the Android machine image executor.
     # # See: https://circleci.com/docs/2.0/executor-types/
     # executor:
@@ -30,7 +30,8 @@ jobs:
       - run:
           name: install pngquant
           command : |
-            sudo apt-get update
+            sudo apt-get update -y |
+            sudo apt-get install -y pngquant
 
       # # The next step will run the unit tests
       # - android/run-tests:
