@@ -30,8 +30,8 @@ jobs:
       - run:
           name: install pngquant
           command : |
-            sudo apt-get update
-            sudo apt-get install pngquant
+            sudo apt-get update -y
+            sudo apt-get install liblcms2-utils pngquant -y
             pngquant
         
 
