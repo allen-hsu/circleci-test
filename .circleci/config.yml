@@ -26,6 +26,10 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+      - run:
+          name: install pngquant
+          command : |
+            echo "test"
 
       # # The next step will run the unit tests
       # - android/run-tests:
