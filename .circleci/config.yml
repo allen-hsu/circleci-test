@@ -33,7 +33,7 @@ jobs:
             sudo apt-get update -y
             sudo apt-get install liblcms2-utils pngquant -y
             find ./ -name '*.png' | xargs pngquant --ext .png --force 256
-        
+            echo "finished"
 
       # # The next step will run the unit tests
       # - android/run-tests:
