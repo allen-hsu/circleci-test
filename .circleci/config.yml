@@ -13,36 +13,34 @@ executors:
     docker:
       - image: circleci/android:api-29-node
 
-export_steps: &export_steps
-  - checkout
-  - run:
-      name: install pngquant
-      command : |
-        sudo apt-get update -y
-        sudo apt-get install liblcms2-utils pngquant -y
-        find ./ -name '*.png' | xargs pngquant --ext .png --force 256
-        echo "finished"
+  
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test: 
+  build-and-test: &build-and-test 
     executor: android-executor
-    steps:
-      - *export_paths
+    steps: 
+      - checkout
+      - run:
+          name: install pngquant
+          command : |
+            sudo apt-get update -y
+            sudo apt-get install liblcms2-utils pngquant -y
+            find ./ -name '*.png' | xargs pngquant --ext .png --force 256
+            echo "finished"
       - run:
           name: test
           command : |
             echo "test"
     
   build-and-test-extend:
-    executor: android-executor
+    <<: *build-and-test
     steps:
-      - *export_paths
       - run:
-          name: test-extend
-          command : |
-            echo "test-extend"
+        name: test-extend
+        command : |
+          echo "test-extend"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
