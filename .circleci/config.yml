@@ -30,8 +30,7 @@ jobs:
       - run:
           name: install pngquant
           command : |
-            sudo apt-get update |
-            sudo apt install snapd
+            sudo apt-get update
 
       # # The next step will run the unit tests
       # - android/run-tests:
