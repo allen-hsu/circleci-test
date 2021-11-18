@@ -16,7 +16,8 @@ jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test:
     docker:
-      - image: circleci/android@sha256:b6646fdf7457f61825526e7bfce364d8e533da6ceb1cdb98e371e94348ecc834
+      # - image: circleci/android@sha256:b6646fdf7457f61825526e7bfce364d8e533da6ceb1cdb98e371e94348ecc834
+      - image: circleci/android@1.0.3
     # # These next lines define the Android machine image executor.
     # # See: https://circleci.com/docs/2.0/executor-types/
     # executor:
@@ -29,8 +30,6 @@ jobs:
       - run:
           name: install pngquant
           command : |
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | 
-            sudo apt-key add - |
             sudo apt-get update
 
       # # The next step will run the unit tests
