@@ -31,6 +31,8 @@ jobs:
           name: install pngquant
           command : |
             sudo apt-get update
+            sudo apt-get pngquant
+        
 
       # # The next step will run the unit tests
       # - android/run-tests:
