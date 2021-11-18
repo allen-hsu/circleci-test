@@ -33,7 +33,7 @@ jobs:
   build-and-test-extend:
     executor: android-executor
     steps: 
-      - *build-and-test-steps
+      - <<: *build-and-test-steps
       - run:
           name: test
           command : |
