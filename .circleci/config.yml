@@ -59,8 +59,8 @@ jobs:
   build-and-test-extend:
     environment:
       COO: "COO12345678"
+      <<: *test_environment 
       <<: *jvm_environment
-      <<: *test_environment
     executor: android-executor
     steps:
       - build-command:
