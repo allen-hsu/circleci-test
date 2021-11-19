@@ -71,6 +71,7 @@ jobs:
           command : |
             echo "test-extend"
             echo ${FOO}
+            echo ${BOO}
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
