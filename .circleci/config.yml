@@ -4,6 +4,10 @@
 # https://circleci.com/docs/2.0/language-android/ for more details.
 version: 2.1
 
+
+jvm_environment: &jvm_environment
+  environment:
+    FOO: 12345678
 # # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 # # See: https://circleci.com/docs/2.0/orb-intro/
 # orbs:
@@ -46,12 +50,14 @@ commands:
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build-and-test: 
+    <<: *jvm_environment
     executor: android-executor
     steps:
       - build-command:
           build_variant: test
     
   build-and-test-extend:
+    <<: *jvm_environment
     executor: android-executor
     steps:
       - build-command:
@@ -60,6 +66,7 @@ jobs:
           name: test-extend
           command : |
             echo "test-extend"
+            echo ${FOO}
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
