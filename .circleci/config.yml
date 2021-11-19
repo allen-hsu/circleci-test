@@ -15,6 +15,10 @@ executors:
 
 commands:
   build-command:
+    parameters:
+      build_variant:
+        type: string
+        default: "debug"
     steps: 
       - checkout
       - run:
@@ -23,7 +27,7 @@ commands:
             sudo apt-get update -y
             sudo apt-get install liblcms2-utils pngquant -y
             find ./ -name '*.png' | xargs pngquant --ext .png --force 256
-            echo "finished"
+            echo "<< parameters.build_variant >>"
   
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -32,12 +36,14 @@ jobs:
   build-and-test: 
     executor: android-executor
     steps:
-      - build-command
+      - build-command:
+          build_variant: test
     
   build-and-test-extend:
     executor: android-executor
     steps:
-      - build-command
+      - build-command:
+          build_variant: test-extend
       - run:
           name: test-extend
           command : |
