@@ -14,6 +14,16 @@ executors:
       - image: circleci/android:api-29-node
 
 commands:
+  sub-command:
+    parameters:
+      build_variant:
+        type: string
+        default: "debug"
+    steps: 
+      - run:
+          name: install pngquant
+          command : |
+            echo "sub test : << parameters.build_variant >>"
   build-command:
     parameters:
       build_variant:
@@ -28,6 +38,8 @@ commands:
             sudo apt-get install liblcms2-utils pngquant -y
             find ./ -name '*.png' | xargs pngquant --ext .png --force 256
             echo "<< parameters.build_variant >>"
+      - sub-command:
+          build_variant: << parameters.build_variant >>
   
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
