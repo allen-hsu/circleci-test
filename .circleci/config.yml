@@ -7,7 +7,10 @@ version: 2.1
 
 jvm_environment: &jvm_environment
   environment:
-    FOO: "12345678"
+    FOO: "FOO12345678"
+test_environment: &test_environment
+  environment:
+    BOO: "BOO12345678"
 # # Orbs are reusable packages of CircleCI configuration that you may share across projects, enabling you to create encapsulated, parameterized commands, jobs, and executors that can be used across multiple projects.
 # # See: https://circleci.com/docs/2.0/orb-intro/
 # orbs:
@@ -58,6 +61,7 @@ jobs:
     
   build-and-test-extend:
     <<: *jvm_environment
+    <<: *test_environment
     executor: android-executor
     steps:
       - build-command:
