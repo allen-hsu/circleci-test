@@ -21,7 +21,7 @@ commands:
         default: "debug"
     steps: 
       - run:
-          name: install pngquant
+          name: sub-command test
           command : |
             echo "sub test : << parameters.build_variant >>"
   build-command:
